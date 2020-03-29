@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   {
     path: 'special',
     loadChildren: () => import('../app/pages/special-events/special-events.module')
-    .then(m => m.SpecialEventsModule)
+    .then(m => m.SpecialEventsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',
